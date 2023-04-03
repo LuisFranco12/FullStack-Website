@@ -1,3 +1,5 @@
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -44,7 +46,7 @@ const Register = ({setUser}) => {
     return ( 
         <div>
             <form onSubmit={handleSubmit}>
-                <input
+                {/* <input
                     type="text"
                     name="username"
                     onChange={handleChange}
@@ -65,7 +67,27 @@ const Register = ({setUser}) => {
                     value={password}
                     placeholder="Password" 
                 />
-                <button>Register</button>
+                <button>Register</button> */}
+
+                <Form.Group className="mb-3" controlId="formBasicUsername">
+                    <Form.Label>User Name</Form.Label>
+                    <Form.Control onChange={handleChange} name="username" type="text" placeholder="Enter A Username" value={username} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control onChange={handleChange} type="email" placeholder="Enter email" name="email" value={email}/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control onChange={handleChange} type="password" placeholder="Enter A Password" name="password" value={password}/>
+                </Form.Group>
+
+                <div className="d-grid gap-2">
+                    <Button variant="primary" size="lg">
+                        Submit
+                    </Button>
+                </div>
+
             </form>
         </div>
      );

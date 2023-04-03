@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { Link } from 'react-router-dom'
+import { FcLike } from 'react-icons/fc'
 
 const IndexStories = () => {
 
@@ -24,19 +25,30 @@ const IndexStories = () => {
 
     if(stories) {
         return ( 
-            <div>
-
-                {
-                    stories.map(story => (
-                        <Link to={`/story/${story._id}`} >
-                            <div>
-                                <img src={story.image} alt="story cover"/>
-                                <p>{story.title}</p>
-                            </div>
-                        </Link>
-                    ))
-                }
-            </div>
+            <div className="stories-container">
+                <div className="grid-container">
+                    {
+                        stories.map(story => (
+                            <Link style={{textDecoration: 'none', color: "black"}} to={`/story/${story._id}`} >
+                                <div className="index-story-container">
+                                    <div className="story-info">
+                                        {/* <div className="index-image-container"> */}
+                                            <img src={story.image} alt="story cover"/>
+                                        {/* </div> */}
+                                        <div className="index-story-info">
+                                            <div className="index-story-title">{story.title}</div>
+                                            <div className="index-genre-likes">
+                                                <div>{story.genre}</div>
+                                                <div className="index-likes"><FcLike /> {story.likes}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))
+                    }
+                    </div>
+             </div>
          );
     }
 }

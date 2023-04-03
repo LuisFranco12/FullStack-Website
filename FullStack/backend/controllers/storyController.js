@@ -1,6 +1,17 @@
 const Story = require('../models/StoryModel')
 const Review = require('../models/reviewModel')
 const Comment = require('../models/commentModel')
+const Stories = require('../controllers/story')
+
+// module.exports.seed = async (req, res) => {
+//     const stories = Story.find()
+
+//     if(!stories.length) {
+//         await Story.create(Stories)
+//     }
+
+//     res.redirect('/story')
+// }
 
 module.exports.index = async(req, res) => {
 

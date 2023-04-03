@@ -1,9 +1,12 @@
 import { useNavigate, Link, useParams } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
+import { RiDeleteBin6Line } from "react-icons/ri"
 const ShowStory = ({user}) => {
 
     const [story, setStory] = useState({})
+
+    let reviewLength = story.reveiw?.length
 
     const storyId = useParams()
 
@@ -73,33 +76,48 @@ const ShowStory = ({user}) => {
             console.log(err.message)
         }
 
-    }
+        window.location.reload();
 
-    console.log(story.reviews)
+    }
 
     if(story) {
         return ( 
-            <div>
-                <div>
-                    {story.image}
-    
-                    {
+            <div className='show-page'>
+                <div className='show-view-top'> 
+                    <div className='show-view-image-container'>
+                        <img src={story.image} alt={story.title + " image"}/>
+                    </div>
+                    <div className='show-view-right'>
+                        <h2>{story.title}</h2>
+                        <p id='show-view-author'>Author: {story.author}</p>
+                        <div>
+                            <h5>Synopsis</h5>
+                            <p id='synopsis'>{story.synopsis}</p>
+                        </div>
+                        <p> <span>Genre:</span> {story.genre} </p>
+
+                        <div className='read-edit-delete'>
+                            <button id='read'>Read</button>
+                        {
                         story.author === user ?
                             <>
-                                <button onClick={deleteStory}>Delete</button>
-                                <Link to={`/story/edit/${story._id}`}>
-                                    Update Story
+                                <Link id="edit" style={{textDecoration: "none"}} to={`/story/edit/${story._id}`}>
+                                    Edit
                                 </Link>
+                                <button onClick={deleteStory} id='delete'><RiDeleteBin6Line /></button>
                             </>
                         :
                             ""
-                    }
+                        }
+                        </div>
+
+                    </div>
                 </div>
-    
-                <div>
+
+                <div className='review-form-container'>
                     {
                         user &&
-                            <form onSubmit={leaveAReview}>
+                            <form className='review-form' onSubmit={leaveAReview}>
                                 <label htmlFor="R-ttl">Review Title</label> <br />
                                 <input type="text" id="R-ttl" name="title" ref={title}/> <br />
     
@@ -107,24 +125,28 @@ const ShowStory = ({user}) => {
                                 <textarea name="body" id="R-bdy" cols="30" rows="3" ref={content}/> <br />
     
                                 {/* add a rating */}
-    
+                 
                                 <button>Review</button>
                             </form>
-                    }
+                    } 
+                </div>
     
-                    {/* {
-                        story.reviews.length <= 0 ?
+                {/* <div>
+                   
+    
+                    {
+                        story.reviews?.length <= 0 ?
                         <>
                             Be the first to leave a review!
                         </>
                     :
                         <>
-                            gul
+                            {reviewLength} review(s)
                         </>
-                    } */}
+                    }
 
                     {
-                        story.reviews.map(review => (
+                        story.reviews?.map(review => (
                             <div>
                                 <p>{review.title}</p>
                                 <p>reviewer: {review.reviewer}</p>
@@ -152,7 +174,7 @@ const ShowStory = ({user}) => {
     
                 <br />
     
-                
+                 */} */}
     
             </div>
          );

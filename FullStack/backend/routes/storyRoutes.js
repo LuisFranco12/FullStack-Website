@@ -6,6 +6,8 @@ const storyController = require('../controllers/storyController')
 
 const { protect, userAccess } = require('../middleware/authMiddleware')
 
+// router.get('/seed', storyController.seed)
+
 router.get('/', storyController.index) //
 
 // router.all('/clear', storyController.clear) //

@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios'
 import Register from './Pages/Register';
 import Navbar from './components/Navbar'
@@ -42,18 +43,17 @@ function App() {
     <>
       <Navbar user={user.username} setUser={setUser}/>
       <Routes>
+        <Route path="/story" element={ <IndexStories /> }/>
+        <Route path="/story/:id" element={ <ShowStory user={user.username}/> }/>
         {
           loggedInUser ?
             <>
-              <Route path="/story" element={ <IndexStories /> }/>
               <Route path="/create" element={<Create user={user}/>}/>
-              <Route path="/story/:id" element={ <ShowStory user={user.username}/> }/>
               <Route path="/story/edit/:id" element={ <EditStory user={user}/> }/>
               <Route path="/story/review/edit/:sid/:rid" element={ <EditReview user={user}/> }/>
             </>
           :
             <>
-              <Route path="/story" element={ <IndexStories /> }/>
               <Route path="/register" element={<Register setUser={setUser}/>}/>
               <Route path="/login" element={<Login setUser={setUser}/>}/>
             </>
