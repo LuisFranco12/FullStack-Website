@@ -44,51 +44,33 @@ const Register = ({setUser}) => {
     }
 
     return ( 
-        <div>
-            <form onSubmit={handleSubmit}>
-                {/* <input
-                    type="text"
-                    name="username"
-                    onChange={handleChange}
-                    value={username}
-                    placeholder="Username" 
-                />
-                <input
-                    type="email"
-                    name="email"
-                    onChange={handleChange}
-                    value={email}
-                    placeholder="Email" 
-                />
-                <input
-                    type="password"
-                    name="password"
-                    onChange={handleChange}
-                    value={password}
-                    placeholder="Password" 
-                />
-                <button>Register</button> */}
-
+        <div style={{ 
+                  display: 'block', 
+                  width: 700, 
+                  padding: 30,
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  border: '1px solid black'
+                   }}>
+                <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicUsername">
-                    <Form.Label>User Name</Form.Label>
-                    <Form.Control onChange={handleChange} name="username" type="text" placeholder="Enter A Username" value={username} />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control onChange={handleChange} type="email" placeholder="Enter email" name="email" value={email}/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={handleChange} type="password" placeholder="Enter A Password" name="password" value={password}/>
-                </Form.Group>
-
-                <div className="d-grid gap-2">
-                    <Button variant="primary" size="lg">
-                        Submit
+                    <Form.Label>Enter A Username:</Form.Label>
+                    <Form.Control size="lg"  onChange={handleChange} name="username" type="text" placeholder="Enter A Username" value={username} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control size="lg" onChange={handleChange} type="email" placeholder="Enter email" name="email" value={email}/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control size="lg" onChange={handleChange} type="password" placeholder="Enter A Password" name="password" value={password}/>
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                    Submit
                     </Button>
-                </div>
-
-            </form>
+                </Form>
         </div>
      );
 }

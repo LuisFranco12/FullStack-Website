@@ -43,7 +43,7 @@ function App() {
     <>
       <Navbar user={user.username} setUser={setUser}/>
       <Routes>
-        <Route path="/story" element={ <IndexStories /> }/>
+        <Route path="/" element={ <IndexStories /> }/>
         <Route path="/story/:id" element={ <ShowStory user={user.username}/> }/>
         {
           loggedInUser ?

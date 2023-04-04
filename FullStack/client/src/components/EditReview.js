@@ -8,6 +8,8 @@ const EditReview = ({user}) => {
     const storyId = useParams()
     const reviewId = useParams()
 
+    let navigate = useNavigate()
+
     useEffect(() => {
         const getReview = async () => {
             const response = await axios.get(`http://localhost:8080/review/${storyId.sid}/${reviewId.rid}`, {
@@ -38,22 +40,29 @@ const EditReview = ({user}) => {
         await axios.put(`http://localhost:8080/review/${storyId.sid}/${reviewId.rid}`, editedReview, {
             headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
         })
+
+        navigate(`/story/${storyId.sid}`)
     }
 
 
     return ( 
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="R-ttl">Review Title</label> <br />
-                <input type="text" id="R-ttl" name="title" ref={title} defaultValue={review.title}/> <br />
+        <div className='edit-review-container'>
+                <h3 id="edit-h3">Edit Review</h3>
+                <form className='review-form' onSubmit={handleSubmit}>
+                    <div className='r-div'>
+                        <label id='edit-title' htmlFor="R-ttl">Review Title</label>
+                        <input type="text" id="R-ttl" name="title" ref={title} defaultValue={review.title}/>
+                    </div>
 
-                <label htmlFor="R-bdy">Review Content</label> <br />
-                <textarea name="body" id="R-bdy" cols="30" rows="3" ref={content} defaultValue={review.body}/> <br />
+                    <div className='r-div'>
+                        <label id='edit-content' htmlFor="R-bdy">Review Content</label>
+                        <textarea name="body" id="R-bdy" cols="30" rows="3" ref={content} defaultValue={review.body}/>
+                    </div>
 
-                {/* add a rating */}
+                    {/* add a rating */}
 
-                <button>Review</button>
-            </form>
+                    <button className='r-button'>Edit Review</button> 
+                </form>
         </div>
      );
 }

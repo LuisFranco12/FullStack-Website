@@ -2,11 +2,16 @@ import { useNavigate, Link, useParams } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { RiDeleteBin6Line } from "react-icons/ri"
+import { ImStarFull } from 'react-icons/im'
+import { FaRegCommentDots } from 'react-icons/fa'
+import { MdOutlineThumbUp } from 'react-icons/md'
+import { BiEdit } from 'react-icons/bi'
+import CreateComment from './CreateComment'
 const ShowStory = ({user}) => {
 
     const [story, setStory] = useState({})
-
-    let reviewLength = story.reveiw?.length
+    const [read, setRead] = useState(false)
+    const [showComment, setShowComment] = useState(false)
 
     const storyId = useParams()
 
@@ -29,7 +34,7 @@ const ShowStory = ({user}) => {
             await axios.delete(`http://localhost:8080/story/${story._id}`, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
-            navigate('/story')
+            navigate('/')
         }catch(err) {
             console.log(err.message)
         }
@@ -79,6 +84,15 @@ const ShowStory = ({user}) => {
         window.location.reload();
 
     }
+    let reviewLength = story.reviews?.length
+
+    const toggleRead = ()  => {
+        setRead(!read)
+    }
+
+    const toggleComments = ()  => {
+        setShowComment(!showComment)
+    }
 
     if(story) {
         return ( 
@@ -98,7 +112,7 @@ const ShowStory = ({user}) => {
                             <p> <span>Genre:</span> {story.genre} </p>
 
                             <div className='read-edit-delete'>
-                                <button id='read'>Read</button>
+                                <button onClick={toggleRead} id='read'>Read</button>
                             {
                             story.author === user ?
                                 <>
@@ -114,64 +128,82 @@ const ShowStory = ({user}) => {
 
                         </div>
                     </div>
-
-                    <h3>Leave a Review!</h3>
-                    <div className='review-form-container'>
                         {
-                            user &&
-                                <form className='review-form' onSubmit={leaveAReview}>
-                                    <div className='review-title-container'>
-                                        <label htmlFor="R-ttl">Review Title</label> <br />
-                                        <input type="text" id="R-ttl" name="title" ref={title}/> <br />
-                                    </div>
-        
-                                    <div className='review-content-container'>
-                                        <label htmlFor="R-bdy">Review Content</label> <br />
-                                        <textarea name="body" id="R-bdy" cols="30" rows="3" ref={content}/> <br />
-                                    </div>
-        
-                                    {/* add a rating */}
-                    
-                                    <button>Review</button>
-                                </form>
-                        } 
-                    </div>
-        
-                    {/* <div>
-                    
-        
-                        {
-                            story.reviews?.length <= 0 ?
-                            <>
-                                Be the first to leave a review!
-                            </>
-                        :
-                            <>
-                                {reviewLength} review(s)
-                            </>
+                            read && 
+                                <div className='story-body'>
+                                    <h4>{story.title}</h4>
+                                    <p>
+                                        {story.body}
+                                    </p>
+                                </div>
                         }
 
                         {
+                            user &&
+                                <>
+                                    <h3>Leave a Review!</h3>
+                                    <form className='review-form' onSubmit={leaveAReview}>
+                                        <div className='r-div'>
+                                            <label id='R-lbl' htmlFor="R-ttl">Review Title</label>
+                                            <input type="text" id="R-ttl" name="title" ref={title}/>
+                                        </div>
+
+                                        <div className='r-div'>
+                                            <label id='RB-lbl' htmlFor="R-bdy">Review Content</label>
+                                            <textarea name="body" id="R-bdy" cols="30" rows="3" ref={content}/>
+                                        </div>
+                                        {/* add a rating */}
+                        
+                                        <button className='r-button'>Review</button>
+                                    </form>
+                                </>
+                        }
+
+                     <h3>{reviewLength} review(s)</h3> 
+                     <div className='review-posts-container'>
+                        {
                             story.reviews?.map(review => (
-                                <div>
-                                    <p>{review.title}</p>
-                                    <p>reviewer: {review.reviewer}</p>
-                                    <p>rating: {review.rating}</p>
-                                    <p>{review.body}</p>
-                                    <p>likes: {review.likes}</p>
-                                    <div>
-                                        {
-                                            review.reviewer === user ?
+                                <div className='review-container'>
+
+                                    <div className='review-top'>
+                                        <div className='user-rating'>
+                                           <div>
+                                                <div ><span>{review.reviewer}</span></div>
+                                                <div className='rating'> <ImStarFull id="star"/> {review.rating}</div>
+                                           </div>
+
+                                            { 
                                                 <>
-                                                    <button onClick={() => deleteReview(review)}>Delete Review</button>
-                                                    <Link to={`/story/review/edit/${story._id}/${review._id}`}>
-                                                        edit review
-                                                    </Link>
-                                                </>
-                                            :
-                                                ''
-                                        }
+                                                    {
+                                                        review.reviewer === user ?
+                                                            <div className='review-edit-delete'>
+                                                                <Link style={{textDecoration: 'none'}} to={`/story/review/edit/${story._id}/${review._id}`}>
+                                                                    <BiEdit style={{fontSize: "1.2rem"}}/>
+                                                                </Link>
+                                                                <button style={{color: 'red'}} onClick={() => deleteReview(review)}><RiDeleteBin6Line style={{fontSize: "1.1rem"}} /></button>
+                                                            </div>
+                                                        :
+                                                            ''
+                                                    }
+                                                </> 
+                                              }
+                                            
+                                        </div>
                                     </div>
+                                    <p id="review-content">{review.body}</p>
+                                    <div className='comment-likes'>
+                                            <button onClick={toggleComments}><FaRegCommentDots /></button>
+                                            <div className='likes'>
+                                                <button> <MdOutlineThumbUp /></button>
+                                                <div id="number">{review.likes}</div>
+                                            </div>
+                                    </div>
+                                        {
+                                            showComment && 
+                                            <div>
+                                                <CreateComment />
+                                            </div>
+                                        }
                                 </div>
                             ))
                         }
@@ -179,8 +211,6 @@ const ShowStory = ({user}) => {
                     </div>
         
                     <br />
-        
-                    */} */}
         
                 </div>
             </div>

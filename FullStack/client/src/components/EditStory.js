@@ -6,11 +6,13 @@ const EditStory = ({user}) => {
 
     const [story, setStory] = useState({})
 
-        let image = useRef()
-        let title = useRef()
-        let synopsis = useRef()
-        let genre = useRef()
-        let body = useRef()
+    let image = useRef()
+    let title = useRef()
+    let synopsis = useRef()
+    let genre = useRef()
+    let body = useRef()
+
+    let navigate = useNavigate()
 
     const storyId = useParams()
     
@@ -44,6 +46,8 @@ const EditStory = ({user}) => {
         await axios.put(`http://localhost:8080/story/${story._id}`, editedStory, {
             headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
         })
+
+        navigate(`/story/${story._id}`)
     }
 
     return ( 

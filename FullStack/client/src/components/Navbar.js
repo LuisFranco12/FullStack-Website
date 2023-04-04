@@ -12,9 +12,9 @@ const NavBar = ({user, setUser}) => {
       };
 
     return ( 
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar style={{}} bg="dark" variant="dark" expand="lg">
             <Container className="d-flex">
-            <LinkContainer to="/story">
+            <LinkContainer to="/">
                 <Navbar.Brand>PenTails</Navbar.Brand>
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -30,7 +30,7 @@ const NavBar = ({user, setUser}) => {
                                     <Nav.Link>Logout</Nav.Link>
                                 </LinkContainer>
                                 <Navbar.Text>
-                                    Signed in as: <a href="#login">{user}</a>
+                                    Signed in as: <span style={{color: 'white'}}> {user} </span>
                                 </Navbar.Text>
                             </>
                         :

@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const Login = ({setUser}) => {
 
@@ -34,31 +36,36 @@ const Login = ({setUser}) => {
             })
             setUser(info.data)
             console.log(info.data)
-            navigate('/story')
+            navigate('/')
         }catch(err) {
             alert(err.response.data.error)
         }
     }
 
     return ( 
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="username"
-                    onChange={handleChange}
-                    value={username}
-                    placeholder="Username" 
-                />
-                <input
-                    type="password"
-                    name="password"
-                    onChange={handleChange}
-                    value={password}
-                    placeholder="Password" 
-                />
-                <button>Login</button>
-            </form>
+        <div style={{ 
+            display: 'block', 
+            width: 700, 
+            padding: 30,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            border: '1px solid black'
+             }}>
+                <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicUsername">
+                    <Form.Label>Username:</Form.Label>
+                    <Form.Control size="lg"  onChange={handleChange} name="username" type="text" placeholder="Enter Username" value={username} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control size="lg" onChange={handleChange} type="password" placeholder="Enter Password" name="password" value={password}/>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    login
+                </Button>
+                </Form>
         </div>
      );
 }

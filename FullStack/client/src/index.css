@@ -54,11 +54,32 @@ img {
   border-radius: 8px;
 }
 
+.pagination-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin-bottom: 50px;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.paginate-buttons {
+  background-color: #3A445D;
+  color: white;
+  border: 1px solid black;
+  width: 2rem;
+  height: 2rem;;
+  border-radius: 5px;
+}
+
 
 /* Show page */
 
 .show-page-container {
-  border: 2px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,9 +93,8 @@ img {
 .show-view-top {
   margin-top: 1.5rem;
   border: 2px solid gray;
-  background-color: #B0B5B3;
-  color: #3F4739;
-  /* color: #585B56; */
+  background-color: #878E88;
+  color: white;
   display: flex;
   justify-content: center;
   gap: 2rem;
@@ -112,8 +132,39 @@ img {
   font-size: 1.01rem;
 }
 
+.story-body {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5rem;
+  background-color: #9DA3A4;
+  color: black;
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 2rem;;
+  width: 60%;
+  height: 55rem;
+  overflow-y:scroll;
+}
+
+.story-body::-webkit-scrollbar {
+  width: 8px;              
+}
+
+.story-body::-webkit-scrollbar-track {
+  background: none;        /* color of the tracking area */
+}
+
+.story-body::-webkit-scrollbar-thumb {
+  background-color: black;    /* color of the scroll thumb */
+  border-radius: 10px;       /* roundness of the scroll thumb */
+  border: 2px solid lightgray;
+}
+
+.story-body p {
+  font-size: 1rem;
+}
+
 .read-edit-delete {
-  /* border: 2px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,8 +182,9 @@ button {
   height: 2.1rem;
   font-size: 1.1rem;
   border: 2px solid black;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius:5px;
+  /* border-top-left-radius: 5px;
+  border-bottom-left-radius:5px; */
+  border-radius: 3px;
 }
 
 #delete {
@@ -163,63 +215,174 @@ button {
 
 /* review form */
 
-.review-form-container {
-  border: 1px solid black;
-  padding-left: 1.5rem;
-  margin-top: 1.1rem;
-  align-content: center;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20rem;
-  width: 70%;
-}
-
 h3 {
   border-bottom: 1px solid gray;
-  padding: 1.5rem;;
+  padding-top: 1.5rem;
+  padding-bottom: 10px;
+  padding-left: 5px;
 }
 
 .review-form {
-  background-color: red;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #565857;
+  color: white;
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 95%;
-  height: 95%;
-}
-
-.review-title-container {
-  display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 50%;
-  border: 2px solid green;
-  height: 5rem; 
+  width: 100%;
+  height: 30rem;;
 }
 
-.review-title-container label {
-  background-color: yellow;
+#R-lbl {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
-  height: 2rem;
-  width: 5rem;
+  padding: 5px;
+  font-size: 1.2rem;
+  width: 100%;
+  height: 2.5rem;
 }
 
-.review-title-container input {
+#R-ttl {
+  width: 100%;
+  height: 2rem;
+  outline: none;
+  font-size: 0.98rem;
+}
+
+#RB-lbl {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+  font-size: 1.2rem;
+  width: 100%;
   height: 2rem;
-  width: 50%;
+}
+
+#R-bdy {
+  width: 20rem;
+  height: 10rem;
+  width: 100%;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.r-div {
+  width: 100%;
+}
+
+.r-button {
+  margin-top: 20px;
+  background-color: #373F47;
+  background-color: #878E99;
+  border-radius: 3px;
+  border: 1px solid white;
+  color: white;
+  width: 6rem;
+  height: 2.2rem;
 }
 
 
+/* review post */
+.review-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 10px;
+}
 
+.user-rating {
+  display: flex;
+  justify-content: space-between;
+}
 
+.review-edit-delete {
+  display: flex;
+  align-items: center;
+}
+
+#edit {
+  background-color: none;
+}
+
+.user-rating span {
+  border-bottom: 1px solid gray;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+#star {
+  color: gold;
+  font-size: 1.05rem;
+}
+
+.rating {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 5px;
+}
+
+#review-content {
+  font-size: 0.9rem;
+}
+
+.comment-likes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.likes {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* edit review */
+.edit-review-container {
+  height: 80vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;;
+}
+
+#edit-title, #edit-content {
+  font-size: 1.1rem;
+}
+
+#edit-h3 {
+  border: none;
+}
+
+.edit-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 20rem;
+  margin: 10px;
+}
+
+.cancel-button {
+  background-color: #EC4E20;
+}
+
+h4 {
+  border-bottom: 2px solid gray;
+  text-align: center;
+  padding: 10px;
+}
 
 @media all and (min-width: 1500px) {
   .show-page {

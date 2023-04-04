@@ -1,6 +1,9 @@
 import axios from 'axios'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 import { useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Create = ({ user }) => {
     console.log(user)
@@ -9,6 +12,8 @@ const Create = ({ user }) => {
     let synopsis = useRef()
     let genre = useRef()
     let body = useRef()
+
+    let navigate = useNavigate()
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -25,36 +30,54 @@ const Create = ({ user }) => {
             await axios.post('http://localhost:8080/story', story, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
+            navigate('/')
         }catch(err){
             console.log(err.message)
         }
     }
 
     return ( 
-        <div>
-            Submit Your Own Story <br />
-
-            requirements: <br />
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="img">Cover Image</label>
-                <input type="text" id="img" ref={image}/><br />
-
-
-                <label htmlFor="ttl">Story Title</label>
-                <input type="text" id="ttl" ref={title}/> <br />
-
-                <label htmlFor="snps">Synopsis</label>
-                <textarea id="snps" ref={synopsis}/> <br />
-
-                <label htmlFor="gnr">Genre</label>
-                <input type="text" id="gnr" ref={genre}/> <br />
-
-                <label htmlFor="bdy">Story content</label>
-                <textarea id="bdy" ref={body}/> <br />
-
-                <button>Submit</button>
-            </form>
-        </div>
+        <div style={{ 
+            display: 'block', 
+            width: 700, 
+            padding: 30,
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            border: '1px solid black',
+            backgroundColor: '#333',
+            color: 'white'
+             }}>
+            <h4>Create Your Own Story!</h4>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+                <Form.Label>Image:</Form.Label>
+                {/* <Form.Control size="lg" type="file" name="image" ref={image}/> */}
+                {/* <Form.Label>Image:</Form.Label> */}
+                <Form.Control size="lg"  name="image" type="text" ref={image}  />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Title:</Form.Label>
+                <Form.Control size="lg"  name="title" type="text" ref={title}  />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                  <Form.Label>Synopsis</Form.Label>
+                  <Form.Control size='lg' name="synopsis" ref={synopsis} as="textarea" rows={2} />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>Genre:</Form.Label>
+                <Form.Control size="lg"  name="genre" type="text" ref={genre}  />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                  <Form.Label>Content</Form.Label>
+                  <Form.Control size='lg' name="content" ref={body} as="textarea" rows={5} />
+              </Form.Group>
+              <Button variant="secondary" size="lg" type="submit">
+                create
+              </Button>
+          </Form>
+  </div>
      );
 }
  

@@ -6,6 +6,8 @@ import { FcLike } from 'react-icons/fc'
 const IndexStories = () => {
 
     const [stories, setStories] = useState([])
+    const [currentPage, setCurrentPage] = useState(1)
+    const [storiesPerPage] = useState(12)
 
     const FetchAllStories = async () => {
         try{
@@ -23,12 +25,28 @@ const IndexStories = () => {
         FetchAllStories()
     }, [])
 
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber)
+    }
+
+    const indexofLastStory = currentPage * storiesPerPage
+    const indexOfFirstStory = indexofLastStory - storiesPerPage
+    const currentstory = stories.slice(indexOfFirstStory, indexofLastStory)
+    const totalStories = stories.length
+
+    const pageNumbers = []
+    const numberOfPages = Math.ceil(totalStories / storiesPerPage)
+    for(let i= 1; i <= numberOfPages; i++) {
+        pageNumbers.push(i)
+    }
+
     if(stories) {
         return ( 
-            <div className="stories-container">
+            <>
+                <div className="stories-container">
                 <div className="grid-container">
                     {
-                        stories.map(story => (
+                        currentstory.map(story => (
                             <Link style={{textDecoration: 'none', color: "black"}} to={`/story/${story._id}`} >
                                 <div className="index-story-container">
                                     <div className="story-info">
@@ -49,6 +67,16 @@ const IndexStories = () => {
                     }
                     </div>
              </div>
+             <nav className="pagination-container">
+                {
+                pageNumbers.map(number => (
+                    <button className="paginate-buttons" onClick={() => paginate(number)} key={number}>
+                        {number}
+                    </button>
+                ))
+                }
+            </nav>
+            </>
          );
     }
 }
