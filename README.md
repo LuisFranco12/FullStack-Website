@@ -24,7 +24,7 @@ npm install
     npm start
     
 ## Challenge
-One of the biggest challenges I faced during this project was implementing user authentication. I had to research various methods and technologies to find the best solution for my application. It took a lot of trial and error, but eventually, I was able to successfully authenticate users 
+One of the biggest challenges I faced during this project was implementing user authentication. I had to research various methods to find the best solution for my application. It took a lot of trial and error, but eventually, I was able to successfully authenticate users 
 
 ## Unsolved Problem
 One unsolved problem for this project was creating a front-end for users to create, edit and delete comments. I was able to successfully implement the backend functionality for comments, but I ran out of time an could not add the functionality on time.
