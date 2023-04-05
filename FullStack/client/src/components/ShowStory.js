@@ -6,6 +6,7 @@ import { ImStarFull } from 'react-icons/im'
 import { FaRegCommentDots } from 'react-icons/fa'
 import { MdOutlineThumbUp } from 'react-icons/md'
 import { BiEdit } from 'react-icons/bi'
+import { AiOutlineEdit } from "react-icons/ai"
 import CreateComment from './CreateComment'
 const ShowStory = ({user}) => {
 
@@ -20,7 +21,6 @@ const ShowStory = ({user}) => {
             const response = await axios.get(`http://localhost:8080/story/${storyId.id}`, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
-            const data = await response.data
             setStory(response.data)
         }
         getStory()
@@ -116,8 +116,8 @@ const ShowStory = ({user}) => {
                             {
                             story.author === user ?
                                 <>
-                                    <Link id="edit" style={{textDecoration: "none"}} to={`/story/edit/${story._id}`}>
-                                        Edit
+                                    <Link id="edit" style={{textDecoration: "none", fonstSize:"1.2rem"}} to={`/story/edit/${story._id}`}>
+                                        <AiOutlineEdit />
                                     </Link>
                                     <button onClick={deleteStory} id='delete'><RiDeleteBin6Line /></button>
                                 </>
@@ -139,9 +139,14 @@ const ShowStory = ({user}) => {
                         }
 
                         {
-                            user &&
-                                <>
-                                    <h3>Leave a Review!</h3>
+                            story.author === user ?
+                                    <>
+                                        <p id='not-allowed'>Cannot review your own work</p>
+                                    </>
+                                :
+                                    user &&
+                                    <>
+                                        <h3>Leave a Review!</h3>
                                     <form className='review-form' onSubmit={leaveAReview}>
                                         <div className='r-div'>
                                             <label id='R-lbl' htmlFor="R-ttl">Review Title</label>
@@ -156,7 +161,7 @@ const ShowStory = ({user}) => {
                         
                                         <button className='r-button'>Review</button>
                                     </form>
-                                </>
+                                    </>
                         }
 
                      <h3>{reviewLength} review(s)</h3> 

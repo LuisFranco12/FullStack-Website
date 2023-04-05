@@ -53,8 +53,6 @@ const Create = ({ user }) => {
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
                 <Form.Label>Image:</Form.Label>
-                {/* <Form.Control size="lg" type="file" name="image" ref={image}/> */}
-                {/* <Form.Label>Image:</Form.Label> */}
                 <Form.Control size="lg"  name="image" type="text" ref={image}  />
               </Form.Group>
               <Form.Group className="mb-3">

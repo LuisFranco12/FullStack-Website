@@ -10,8 +10,6 @@ const { protect, userAccess } = require('../middleware/authMiddleware')
 
 router.get('/', storyController.index) //
 
-// router.all('/clear', storyController.clear) //
-
 router.delete('/:id', protect, userAccess, storyController.delete) //
 
 router.put('/:id', protect, userAccess, storyController.update) //

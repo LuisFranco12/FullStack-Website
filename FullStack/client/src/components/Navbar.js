@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {LinkContainer} from 'react-router-bootstrap'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,19 +6,25 @@ import Container from 'react-bootstrap/Container';
 
 const NavBar = ({user, setUser}) => {
 
+    let navigate = useNavigate()
+
+    const redirectTo = () => {
+        navigate('/login')
+    }
+
     const logout = () => {
         localStorage.removeItem("token")
         setUser({})
       };
 
     return ( 
-        <Navbar style={{}} bg="dark" variant="dark" expand="lg">
-            <Container className="d-flex">
-            <LinkContainer to="/">
-                <Navbar.Brand>PenTails</Navbar.Brand>
-            </LinkContainer>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+        <Navbar bg="dark" variant="dark" expand="lg">
+            <Container>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <LinkContainer to="/">
+                    <Navbar.Brand>PenTails</Navbar.Brand>
+                </LinkContainer>
+                <Navbar.Collapse className="d-flex justify-content-end" id="basic-navbar-nav">
                 <Nav className="mr-auto">
                     {
                         user ? 
@@ -35,9 +41,9 @@ const NavBar = ({user, setUser}) => {
                             </>
                         :
                             <>
-                                <LinkContainer to="/login">
-                                    <Nav.Link>Create</Nav.Link>
-                                </LinkContainer>
+                                {/* <LinkContainer to="/login"> */}
+                                    <Nav.Link onClick={redirectTo}>Create</Nav.Link>
+                                {/* </LinkContainer> */}
                                 <LinkContainer to="/login">
                                     <Nav.Link>Login</Nav.Link>
                                 </LinkContainer>
