@@ -22,7 +22,7 @@ const NavBar = ({user, setUser}) => {
             <Container>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <LinkContainer to="/">
-                    <Navbar.Brand>PenTails</Navbar.Brand>
+                    <Navbar.Brand>PenTales</Navbar.Brand>
                 </LinkContainer>
                 <Navbar.Collapse className="d-flex justify-content-end" id="basic-navbar-nav">
                 <Nav className="mr-auto">
