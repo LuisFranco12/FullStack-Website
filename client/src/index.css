@@ -337,6 +337,19 @@ h3 {
   gap: 5px;
 }
 
+.review-middle {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+#review-title {
+  font-weight: bold;
+  font-size: 1.06rem;
+}
+
 #review-content {
   font-size: 0.9rem;
 }

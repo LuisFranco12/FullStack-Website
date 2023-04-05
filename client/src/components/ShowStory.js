@@ -195,7 +195,10 @@ const ShowStory = ({user}) => {
                                             
                                         </div>
                                     </div>
-                                    <p id="review-content">{review.body}</p>
+                                    <div className='review-middle'>
+                                        <p id='review-title'>{review.title}</p>
+                                        <p id="review-content">{review.body}</p>
+                                    </div> 
                                     <div className='comment-likes'>
                                             <button onClick={toggleComments}><FaRegCommentDots /></button>
                                             <div className='likes'>
