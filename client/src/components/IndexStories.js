@@ -11,7 +11,7 @@ const IndexStories = () => {
 
     const FetchAllStories = async () => {
         try{
-            const response = await axios.get('http://localhost:8080/story')
+            const response = await axios.get(process.env.REACT_APP_BASE_URL + '/story')
             let data = response.data
             setStories(data)
         }catch(err) {

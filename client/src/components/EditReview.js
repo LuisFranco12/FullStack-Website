@@ -12,7 +12,7 @@ const EditReview = ({user}) => {
 
     useEffect(() => {
         const getReview = async () => {
-            const response = await axios.get(`http://localhost:8080/review/${storyId.sid}/${reviewId.rid}`, {
+            const response = await axios.get(process.env.REACT_APP_BASE_URL + `/review/${storyId.sid}/${reviewId.rid}`, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
             const data = await response.data
@@ -37,7 +37,7 @@ const EditReview = ({user}) => {
         }
 
         console.log(storyId.sid, reviewId.rid) 
-        await axios.put(`http://localhost:8080/review/${storyId.sid}/${reviewId.rid}`, editedReview, {
+        await axios.put(process.env.REACT_APP_BASE_URL + `/review/${storyId.sid}/${reviewId.rid}`, editedReview, {
             headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
         })
 

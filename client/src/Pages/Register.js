@@ -26,11 +26,11 @@ const Register = ({setUser}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
-            const Response = await axios.post("http://localhost:8080/users", formData)
+            const Response = await axios.post(process.env.REACT_APP_BASE_URL + "/users", formData)
             console.log(Response.data.token)
             localStorage.setItem("token", Response.data.token)
 
-            const info = await axios.get("http://localhost:8080/users", {
+            const info = await axios.get(process.env.REACT_APP_BASE_URL + "/users", {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }

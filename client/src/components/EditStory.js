@@ -20,10 +20,9 @@ const EditStory = ({user}) => {
     
     useEffect(() => {
         const getStory = async () => {
-            const response = await axios.get(`http://localhost:8080/story/${storyId.id}`, {
+            const response = await axios.get(process.env.REACT_APP_BASE_URL + `/story/${storyId.id}`, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
-            const data = await response.data
             setStory(response.data)
         }
         getStory()
@@ -45,7 +44,7 @@ const EditStory = ({user}) => {
             body: body.current.value
         }
 
-        await axios.put(`http://localhost:8080/story/${story._id}`, editedStory, {
+        await axios.put(process.env.REACT_APP_BASE_URL + `/story/${story._id}`, editedStory, {
             headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
         })
 
@@ -53,30 +52,6 @@ const EditStory = ({user}) => {
     }
 
     return ( 
-        // <div>
-        //     Update Your Story <br />
-
-        //     <form onSubmit={handleSubmit}>
-                
-        //         <label htmlFor="img">Cover Image</label>
-        //         <input type="text" id="img" ref={image} defaultValue={story.image}/><br />
-
-
-        //         <label htmlFor="ttl">Story Title</label>
-        //         <input type="text" id="ttl" ref={title} defaultValue={story.title}/> <br />
-
-        //         <label htmlFor="snps">Synopsis</label>
-        //         <textarea id="snps" ref={synopsis} defaultValue={story.synopsis}/> <br />
-
-        //         <label htmlFor="gnr">Genre</label>
-        //         <input type="text" id="gnr" ref={genre} defaultValue={story.genre}/> <br />
-
-        //         <label htmlFor="bdy">Story content</label>
-        //         <textarea id="bdy" ref={body} defaultValue={story.body}/> <br />
-
-        //         <button>Submit</button>
-        //     </form>
-        // </div>
         <div style={{ 
             display: 'block', 
             width: 700, 
@@ -114,7 +89,7 @@ const EditStory = ({user}) => {
                   <Form.Control size='lg' name="content" ref={body} as="textarea" rows={5} defaultValue={story.body} />
               </Form.Group>
               <Button variant="secondary" size="lg" type="submit">
-                create
+                Edit
               </Button>
           </Form>
         </div>

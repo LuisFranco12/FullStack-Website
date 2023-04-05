@@ -18,7 +18,7 @@ const ShowStory = ({user}) => {
 
     useEffect(() => {
         const getStory = async () => {
-            const response = await axios.get(`http://localhost:8080/story/${storyId.id}`, {
+            const response = await axios.get(process.env.REACT_APP_BASE_URL + `/story/${storyId.id}`, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
             setStory(response.data)
@@ -31,7 +31,7 @@ const ShowStory = ({user}) => {
 
     async function deleteStory() {
         try{
-            await axios.delete(`http://localhost:8080/story/${story._id}`, {
+            await axios.delete(process.env.REACT_APP_BASE_URL + `/story/${story._id}`, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
             navigate('/')
@@ -45,7 +45,7 @@ const ShowStory = ({user}) => {
 
     const deleteReview = async (R) => {
         console.log(R)
-        await axios.delete(`http://localhost:8080/review/${story._id}/${R._id}`, {
+        await axios.delete(process.env.REACT_APP_BASE_URL + `/review/${story._id}/${R._id}`, {
             headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
         })
 
@@ -66,7 +66,7 @@ const ShowStory = ({user}) => {
         }
 
         try{
-            const review = await axios.post(`http://localhost:8080/review/${story._id}`, newReview, {
+            const review = await axios.post(process.env.REACT_APP_BASE_URL + `/review/${story._id}`, newReview, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
 

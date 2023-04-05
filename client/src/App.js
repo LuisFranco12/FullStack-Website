@@ -21,7 +21,7 @@ function App() {
 
     const getUser = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/users', {
+        const response = await axios.get(process.env.REACT_APP_BASE_URL + '/users', {
           headers: {
             Authorization: `Bearer ${getToken}`
           }

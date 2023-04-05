@@ -27,7 +27,7 @@ const Create = ({ user }) => {
             body: body.current.value
         }
         try{
-            await axios.post('http://localhost:8080/story', story, {
+            await axios.post(process.env.REACT_APP_BASE_URL + '/story', story, {
                 headers: {Authorization: `Bearer ${localStorage.getItem("token")}`}
             })
             navigate('/')
