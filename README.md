@@ -11,9 +11,10 @@ A website for writers to showcase their work and for readers to discover new wri
 ```
 git clone https://github.com/username/Pokemon.git
 ```    
-##### Then, navigate to the project directory and install the dependencies
+##### Then, navigate to the project directories and install the dependencies
 ```
-cd Pokemon
+cd backend
+cd client
 ```
 ```
 npm install
@@ -21,3 +22,6 @@ npm install
 
 ##### Finally, run the project by typing the command below
     npm start
+    
+## Challenge
+One of the biggest challenges I faced during this project was implementing user authentication. I had to research various methods and technologies to find the best solution for my application. It took a lot of trial and error, but eventually, I was able to successfully authenticate users 
