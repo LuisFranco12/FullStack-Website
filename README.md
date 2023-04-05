@@ -1,5 +1,6 @@
 # PenTales
 A website for writers to showcase their work and for readers to discover new writers and engage with their stories.
+![image](https://user-images.githubusercontent.com/108766758/230174449-1c5af987-3701-4384-8127-8334f6451fcc.png)
 
 ## Installation
 ##### To install, first clone the repository to your computer
