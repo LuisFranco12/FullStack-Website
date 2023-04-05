@@ -40,5 +40,4 @@ One unsolved problem for this project was creating a front-end for users to crea
 + Bootstrap
 
 ## Site
-### 
 [PenTales](https://story-frontend-zjh6.onrender.com/) 
