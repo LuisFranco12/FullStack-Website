@@ -42,4 +42,4 @@ One unsolved problem for this project was creating a front-end for users to crea
 
 ## Site
 ### [PenTales](https://story-frontend-zjh6.onrender.com/) 
-I used Render to deploy my site and render takes a while to load the data from the database
+I used Render to deploy my site and it takes render a while to load the data from the database
